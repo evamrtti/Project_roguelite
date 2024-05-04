@@ -36,7 +36,14 @@ public class WandFire : MonoBehaviour
 
         if (characterController.facingRight)
         {
-            rotz = Mathf.Clamp(rotz, -90f, 90f);
+            if (rotz < 0)
+            {
+                rotz = Mathf.Clamp(rotz, -90f, 90f);
+            }
+            else
+            {
+                rotz = Mathf.Clamp(rotz, 90f, 270f);
+            }
         }
         else
         {
