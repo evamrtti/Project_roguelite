@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
     private bool isGrounded;
     private bool hasJumped;
     private bool hasDoubleJumped;
+    private bool facingRight = true;
 
     void Start()
     {
@@ -25,6 +26,11 @@ public class CharacterController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveHorizontal * moveSpeed, rb.velocity.y);
+
+        if (moveHorizontal < 0 && facingRight || moveHorizontal > 0 && !facingRight)
+        {
+            Flip();
+        }
     }
 
     void Jump()
@@ -37,7 +43,7 @@ public class CharacterController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && hasJumped && !hasDoubleJumped)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0f); // Reset vertical velocity before double jump
+            rb.velocity = new Vector2(rb.velocity.x, 0f); 
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             hasDoubleJumped = true;
         }
@@ -51,5 +57,13 @@ public class CharacterController : MonoBehaviour
             hasJumped = false;
             hasDoubleJumped = false;
         }
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }
