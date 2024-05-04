@@ -8,7 +8,7 @@ public class CharacterController : MonoBehaviour
     private bool isGrounded;
     private bool hasJumped;
     private bool hasDoubleJumped;
-    private bool facingRight = true;
+    public bool facingRight = true;
 
     void Start()
     {

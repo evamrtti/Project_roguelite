@@ -5,14 +5,6 @@ public class SwordAttack : MonoBehaviour
     private bool reachedEnemy = false;
     private bool canAttack = false;
     private GameObject enemy;
-    private GameObject player;
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player"); 
-        transform.SetParent(player.transform);
-        transform.localPosition = new Vector3(0.5f, 0, 0);
-    }
 
     void Update()
     {
