@@ -5,12 +5,15 @@ public class WandFire : MonoBehaviour
 {
     private Camera mainCam;
     private Vector3 mousePos;
-    public GameObject bullet;
+    public GameObject bulletPrefab;
     public bool canFire = true;
     private float timer;
     public float timeBetweenFiring;
     private bool isPickedUp = false;
     private CharacterController characterController;
+    public float force;
+    public float rotationBullet;
+
 
     void Start()
     {
@@ -36,14 +39,7 @@ public class WandFire : MonoBehaviour
 
         if (characterController.facingRight)
         {
-            if (rotz < 0)
-            {
-                rotz = Mathf.Clamp(rotz, -90f, 90f);
-            }
-            else
-            {
-                rotz = Mathf.Clamp(rotz, 90f, 270f);
-            }
+            rotz = Mathf.Clamp(rotz, -90f, 90f);
         }
         else
         {
@@ -72,7 +68,11 @@ public class WandFire : MonoBehaviour
         if (Input.GetMouseButton(0) && canFire)
         {
             canFire = false;
-            Instantiate(bullet, shootingPos, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, shootingPos, Quaternion.identity);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            Vector3 direction = mousePos - transform.position;
+            rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+            rb.angularVelocity = rotationBullet;
         }
     }
 

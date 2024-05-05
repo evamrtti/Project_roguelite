@@ -155,9 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a41003941048844aa98daadb145d912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4016519720494464455, guid: eb9c8487c9ee8a2488176aae9933a9c7, type: 3}
+  bulletPrefab: {fileID: 4016519720494464455, guid: eb9c8487c9ee8a2488176aae9933a9c7, type: 3}
   canFire: 1
-  timeBetweenFiring: 1
+  timeBetweenFiring: 0.2
+  force: 3
+  rotationBullet: 500
 --- !u!114 &511310202
 MonoBehaviour:
   m_ObjectHideFlags: 0
