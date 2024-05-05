@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class Sorcerer : MonoBehaviour
 {
     Rigidbody2D rb;
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     private bool isGrounded;
-    private bool hasJumped;
-    private bool hasDoubleJumped;
     public bool facingRight = true;
 
     void Start()
@@ -35,17 +33,10 @@ public class CharacterController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !hasJumped && !hasDoubleJumped)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
-            hasJumped = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && !isGrounded && hasJumped && !hasDoubleJumped)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0f); 
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            hasDoubleJumped = true;
         }
     }
 
@@ -54,8 +45,6 @@ public class CharacterController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            hasJumped = false;
-            hasDoubleJumped = false;
         }
     }
 

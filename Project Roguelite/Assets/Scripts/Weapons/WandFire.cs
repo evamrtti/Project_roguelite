@@ -9,8 +9,7 @@ public class WandFire : MonoBehaviour
     public bool canFire = true;
     private float timer;
     public float timeBetweenFiring;
-    private bool isPickedUp = false;
-    private CharacterController characterController;
+    private Sorcerer sorcerer;
     public float force;
     public float rotationBullet;
 
@@ -18,15 +17,14 @@ public class WandFire : MonoBehaviour
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        characterController = FindObjectOfType<CharacterController>();
+        sorcerer = FindObjectOfType<Sorcerer>();
     }
 
     void Update()
     {
-        if (isPickedUp)
-        {
+       
             Fire();
-        }
+        
     }
 
     void Fire()
@@ -37,7 +35,7 @@ public class WandFire : MonoBehaviour
         Vector3 rotation = mousePos - transform.position;
         float rotz = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        if (characterController.facingRight)
+        if (sorcerer.facingRight)
         {
             rotz = Mathf.Clamp(rotz, -90f, 90f);
         }
@@ -76,11 +74,4 @@ public class WandFire : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isPickedUp = true;
-        }
-    }
 }
