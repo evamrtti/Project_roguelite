@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cabd12ebc28d5488bf942d2fcd1124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 0
-  maxDamage: 0
-  timeBetweenAttacks: 0
+  minDamage: 16
+  maxDamage: 20
+  timeBetweenAttacks: 1.2
 --- !u!1 &8245095176307738458
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerHealth: 0
-  maxPlayerHealth: 0
-  minPlayerDefense: 0
-  maxPlayerDefense: 0
+  maxPlayerHealth: 160
+  minPlayerDefense: 4
+  maxPlayerDefense: 6

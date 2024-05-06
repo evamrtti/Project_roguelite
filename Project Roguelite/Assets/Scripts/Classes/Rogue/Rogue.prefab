@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f015aacbff8bc49975042a1fb2759b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 2
-  maxDamage: 2
+  minDamage: 3
+  maxDamage: 7
   initialDelay: 0.2
-  cooldown: 2
+  cooldown: 0.6
 --- !u!1 &8913279036219868901
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d86275777a6c6240a7ccd782170de46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 8
   jumpForce: 10
   facingRight: 1
 --- !u!114 &3438202343655005687
@@ -336,6 +336,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerHealth: 0
-  maxPlayerHealth: 0
+  maxPlayerHealth: 100
   minPlayerDefense: 0
   maxPlayerDefense: 0

@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b06f557cbe79147822cb35c3a4fa78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   jumpForce: 10
   facingRight: 1
 --- !u!114 &907799293098624883
@@ -189,9 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerHealth: 0
-  maxPlayerHealth: 0
-  minPlayerDefense: 0
-  maxPlayerDefense: 0
+  maxPlayerHealth: 120
+  minPlayerDefense: 2
+  maxPlayerDefense: 4
 --- !u!1 &8808857556476256640
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4016519720494464455, guid: eb9c8487c9ee8a2488176aae9933a9c7, type: 3}
   canFire: 1
-  timeBetweenFiring: 0.5
+  timeBetweenFiring: 0.8
   force: 10
   rotationBullet: 500
