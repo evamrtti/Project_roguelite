@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Rogue : MonoBehaviour
+public class RogueMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     public float moveSpeed = 5f;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Knight : MonoBehaviour
+public class SorcererMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     public float moveSpeed = 5f;

@@ -9,7 +9,7 @@ public class WandFire : MonoBehaviour
     public bool canFire = true;
     private float timer;
     public float timeBetweenFiring;
-    private Sorcerer sorcerer;
+    private SorcererMovement sorcerer;
     public float force;
     public float rotationBullet;
 
@@ -17,7 +17,7 @@ public class WandFire : MonoBehaviour
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        sorcerer = FindObjectOfType<Sorcerer>();
+        sorcerer = FindObjectOfType<SorcererMovement>();
     }
 
     void Update()

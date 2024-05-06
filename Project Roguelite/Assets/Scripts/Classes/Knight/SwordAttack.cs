@@ -4,14 +4,17 @@ public class SwordAttack : MonoBehaviour
 {
     private bool inContact = false;
     private GameObject enemy;
-    public float damageAmount;
+    private float damageAmount;
+    public int minDamage;
+    public int maxDamage;
     private bool canAttack = true;
     private float timeBeforeAttacking;
     public float timeBetweenAttacks;
 
     void Update()
     {
-            Attack();
+        damageAmount = Random.Range(minDamage, maxDamage);    
+        Attack();
     }
 
     void Attack()

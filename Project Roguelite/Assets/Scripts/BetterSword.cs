@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BetterSword : MonoBehaviour
 {
-    public float damageIncrease = 5f;
+    public int damageIncrease = 5;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -11,7 +11,8 @@ public class BetterSword : MonoBehaviour
             SwordAttack sword = other.GetComponentInChildren<SwordAttack>();
             if (sword != null)
             {
-                sword.damageAmount += damageIncrease;
+                sword.minDamage += damageIncrease;
+                sword.maxDamage += damageIncrease;
             }
 
             Destroy(gameObject);
