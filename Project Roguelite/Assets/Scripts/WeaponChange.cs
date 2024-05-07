@@ -30,8 +30,8 @@ public class WeaponChange : MonoBehaviour
     {
         GameObject newWeapon = Instantiate(newWeaponPrefab, player.transform);
         Vector3 playerPosition = player.transform.position;
-        Vector3 newPosition = new Vector3(playerPosition.x, playerPosition.y + 3f, playerPosition.z);
-        newWeapon.transform.localPosition = newPosition;
-        newWeapon.transform.localRotation = Quaternion.identity;
+        Vector3 newPosition = new Vector3(playerPosition.x - 0.5f, playerPosition.y, playerPosition.z);
+        newWeapon.transform.position = newPosition;
+        newWeapon.transform.rotation = Quaternion.identity;
     }
 }
