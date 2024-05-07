@@ -142,21 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bleedingDamage: 35
   requiredHits: 3
---- !u!114 &329364274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329364265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15cabd12ebc28d5488bf942d2fcd1124, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDamage: 5
-  maxDamage: 10
-  timeBetweenAttacks: 0
 --- !u!1 &924184269
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,9 +350,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5902588290199149082, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       insertIndex: -1
       addedObject: {fileID: 329364270}
-    - targetCorrespondingSourceObject: {fileID: 5902588290199149082, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 329364274}
   m_SourcePrefab: {fileID: 100100000, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
 --- !u!1 &1610318902
 GameObject:

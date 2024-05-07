@@ -40,8 +40,10 @@ public class BleedSword : MonoBehaviour
 
     void ProcBleed()
     {
-            Debug.Log("Bleeding started!");
-            hasBled = true;
+        var enemyHealth = enemy.GetComponent<EnemyHealth>();
+        enemyHealth.TakeDamage(bleedingDamage);
+        Debug.Log("Bleeding started!");
+        hasBled = true;
     }
 
     void ResetBleeding()
