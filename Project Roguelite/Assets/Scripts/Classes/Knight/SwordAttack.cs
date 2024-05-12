@@ -14,15 +14,7 @@ public class SwordAttack : MonoBehaviour
     void Update()
     {
         ShieldDefense shieldDefense = GameObject.FindObjectOfType<ShieldDefense>();
-        if (shieldDefense != null && !shieldDefense.isDefending)
-        {
-            damageAmount = Random.Range(minDamage, maxDamage);
-            Attack();
-        }
-    }
 
-    void Attack()
-    {
         if (!canAttack)
         {
             timeBeforeAttacking += Time.deltaTime;
@@ -33,13 +25,19 @@ public class SwordAttack : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && inContact && canAttack)
+        if (Input.GetMouseButtonDown(0) && inContact && canAttack && shieldDefense != null && !shieldDefense.isDefending)
         {
+            damageAmount = Random.Range(minDamage, maxDamage);
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
             var enemyHealth = enemy.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(damageAmount);
             canAttack = false;
 
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
