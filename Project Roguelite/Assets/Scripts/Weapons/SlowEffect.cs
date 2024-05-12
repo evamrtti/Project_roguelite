@@ -7,10 +7,10 @@ public class SlowEffect : MonoBehaviour
     private bool inContact = false;
     private GameObject enemy;
     private int hitCounter = 0;
+    public float slowDuration = 3;
     public int requiredHits = 6;
     private bool isSlowed = false;
     private float slowTimer = 0;
-    public float slowDuration = 3;
     private bool canSlow = true;
 
     void Update()
@@ -60,7 +60,7 @@ public class SlowEffect : MonoBehaviour
         Debug.Log("Not slowed anymore");
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -69,7 +69,7 @@ public class SlowEffect : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject == enemy)
         {

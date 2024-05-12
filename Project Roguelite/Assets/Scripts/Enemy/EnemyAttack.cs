@@ -1,9 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
     private bool inContact = false;
-    private GameObject enemy;
+    private GameObject player;
     private float damageAmount;
     public int minDamage;
     public int maxDamage;
@@ -13,12 +15,8 @@ public class SwordAttack : MonoBehaviour
 
     void Update()
     {
-        ShieldDefense shieldDefense = GameObject.FindObjectOfType<ShieldDefense>();
-        if (shieldDefense != null && !shieldDefense.isDefending)
-        {
-            damageAmount = Random.Range(minDamage, maxDamage);
-            Attack();
-        }
+        damageAmount = Random.Range(minDamage, maxDamage);
+        Attack();
     }
 
     void Attack()
@@ -33,10 +31,10 @@ public class SwordAttack : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && inContact && canAttack)
+        if (inContact && canAttack)
         {
-            var enemyHealth = enemy.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(damageAmount);
+            var playerHealth = player.GetComponent<KnightHealth>();
+            playerHealth.TakeDamage(damageAmount);
             canAttack = false;
 
         }
@@ -44,18 +42,18 @@ public class SwordAttack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             inContact = true;
-            enemy = collision.gameObject; 
+            player = collision.gameObject;
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == enemy)
+        if (collision.gameObject == player)
         {
-            inContact = false; 
+            inContact = false;
         }
     }
 }

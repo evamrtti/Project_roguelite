@@ -22,6 +22,11 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        if (defense > damageAmount)
+        {
+            defense = damageAmount;
+        }
+
         currentHealth -= damageAmount - defense;
 
         if (currentHealth <= 0)

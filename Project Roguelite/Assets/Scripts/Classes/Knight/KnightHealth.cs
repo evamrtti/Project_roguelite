@@ -6,7 +6,7 @@ public class KnightHealth : MonoBehaviour
 {
     public float currentPlayerHealth;
     public float maxPlayerHealth;
-    private float defense;
+    public float defense;
     public int minPlayerDefense;
     public int maxPlayerDefense;
 
@@ -22,6 +22,11 @@ public class KnightHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        if (defense > damageAmount)
+        {
+            defense = damageAmount;
+        }
+
         currentPlayerHealth -= damageAmount - defense;
 
         if (currentPlayerHealth <= 0)

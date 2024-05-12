@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class StunEffect : MonoBehaviour
 {
     private bool inContact = false;
     private GameObject enemy;
     private int hitCounter = 0;
+    public float stunDuration = 3;
     public int requiredHits = 6;
     private bool isStunned = false;
     private float stunTimer = 0;
-    public float stunDuration = 3;
     private bool canStun = true;
 
     void Update()
@@ -60,7 +60,7 @@ public class NewBehaviourScript : MonoBehaviour
         Debug.Log("Not stunned anymore");
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -69,7 +69,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject == enemy)
         {
