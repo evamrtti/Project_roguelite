@@ -137,12 +137,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 329364265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fc36dad6da7420439b65c604c22e110, type: 3}
+  m_Script: {fileID: 11500000, guid: 425856ccc43a693429540c95e2286145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisonDamage: 10
-  poisonDuration: 3
-  cooldown: 5
+  requiredHits: 6
+  slowDuration: 3
 --- !u!1 &924184269
 GameObject:
   m_ObjectHideFlags: 0

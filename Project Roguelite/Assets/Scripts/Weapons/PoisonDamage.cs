@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonSword : MonoBehaviour
+public class PoisonDamage : MonoBehaviour
 {
     public float poisonDamage = 10;
     public float poisonDuration = 3;
