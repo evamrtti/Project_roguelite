@@ -123,27 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &253549609 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5902588290199149082, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
-  m_PrefabInstance: {fileID: 1751973309}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &253549620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253549609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fc36dad6da7420439b65c604c22e110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poisonDamage: 10
-  poisonDuration: 3
-  cooldown: 5
-  attackCooldown: 1.2
 --- !u!1 &334381844
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +299,26 @@ Transform:
   - {fileID: 1074877168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &672591800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5902588290199149082, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
+  m_PrefabInstance: {fileID: 1534503772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &672591802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672591800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc36dad6da7420439b65c604c22e110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poisonDamage: 10
+  poisonDuration: 3
+  cooldown: 5
 --- !u!1 &924184269
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,11 +463,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1031488625 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 931604953020565630, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
-  m_PrefabInstance: {fileID: 1751973309}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1069805249
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +475,7 @@ GameObject:
   - component: {fileID: 1069805253}
   - component: {fileID: 1069805252}
   - component: {fileID: 1069805251}
+  - component: {fileID: 1069805254}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -515,8 +510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0ac5e8c32d8484ea50e4a4669a2370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 10
-  maxDamage: 10
+  minDamage: 0
+  maxDamage: 0
   timeBetweenAttacks: 1
 --- !u!61 &1069805252
 BoxCollider2D:
@@ -615,6 +610,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1069805254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069805249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2316a86ecb3c2f047b06bd9e7ccf588f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bleedingDamage: 35
+  requiredHits: 3
+  timeBetweenAttacks: 1
 --- !u!1 &1074877167
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +771,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1751973309
+--- !u!1001 &1534503772
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -771,11 +781,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1701700288706600695, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6269872
+      value: 1.8833554
       objectReference: {fileID: 0}
     - target: {fileID: 1701700288706600695, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.536668
+      value: -2.5446842
       objectReference: {fileID: 0}
     - target: {fileID: 1701700288706600695, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       propertyPath: m_LocalPosition.z
@@ -809,18 +819,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3997292000853572298, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 1031488625}
-    - target: {fileID: 3997292000853572298, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
-      propertyPath: maxDamage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3997292000853572298, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
-      propertyPath: minDamage
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8245095176307738458, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       propertyPath: m_Name
       value: Knight
@@ -831,7 +829,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5902588290199149082, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 253549620}
+      addedObject: {fileID: 672591802}
   m_SourcePrefab: {fileID: 100100000, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
 --- !u!1 &1995413940
 GameObject:
@@ -1389,4 +1387,4 @@ SceneRoots:
   - {fileID: 334381849}
   - {fileID: 2143871780}
   - {fileID: 924184273}
-  - {fileID: 1751973309}
+  - {fileID: 1534503772}
