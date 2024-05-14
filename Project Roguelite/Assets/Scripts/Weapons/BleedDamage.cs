@@ -2,60 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BleedSword : MonoBehaviour
+public class BleedDamage : MonoBehaviour
 {
-    public float bleedingDamage = 35; 
-    public int requiredHits = 3; 
+    public float bleedingDamage = 35;
+    public int requiredHits = 3;
+    public float attackCooldown = 1.2f;
+    private float lastAttackTime;
 
-    private int hitCounter = 0;
-    private bool hasBled = false;
 
     private bool inContact = false;
     private GameObject enemy;
 
+
+    private Dictionary<GameObject, int> bleedGauge = new Dictionary<GameObject, int>();
+
     void Update()
     {
-        BleedGauge();
-        
-        if (hasBled)
-        {
-            ResetBleeding();
-        }
-        else if (hitCounter >= requiredHits)
-        {
-            ProcBleed();
-        }
-    }
+        bool canAttack = Time.time - lastAttackTime >= attackCooldown;
 
+        if (Input.GetMouseButtonDown(0) && inContact && canAttack)
+        {
+            if (!bleedGauge.ContainsKey(enemy))
+            {
+                bleedGauge[enemy] = 0;
+            }
 
-    void BleedGauge()
+            if (bleedGauge.ContainsKey(enemy))
+            {
+                ProcBleed(enemy);
+            }
+        }
+    } 
+
+    void ProcBleed(GameObject target)
     {
+        bleedGauge[target]++;
+        Debug.Log("Gauge = " + bleedGauge[target] + " for " + target.name);
+        lastAttackTime = Time.time;
 
-        if (Input.GetMouseButtonDown(0) && inContact)
+        if (bleedGauge[target] >= requiredHits)
         {
-            hitCounter++;
-            Debug.Log("Gauge growing!");
-        }
-    }
-
-    void ProcBleed()
-    {
-        if (enemy != null)
-        {
-            var enemyHealth = enemy.GetComponent<EnemyHealth>();
+            var enemyHealth = target.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(bleedingDamage);
-                Debug.Log("Bleeding started!");
-                hasBled = true;
+                Debug.Log("Bleeding damage to " + target.name);
             }
+            bleedGauge.Remove(target);
         }
-    }
-
-    void ResetBleeding()
-    {
-        hitCounter = 0;
-        hasBled = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

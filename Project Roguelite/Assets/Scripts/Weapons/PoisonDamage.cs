@@ -6,76 +6,106 @@ public class PoisonDamage : MonoBehaviour
 {
     public float poisonDamage = 10;
     public float poisonDuration = 3;
-    private float poisonTimer = 0;
-    private float cooldownTimer = 0;
-    private float poisonDamageTimer = 0;
     public float cooldown = 5;
-    private bool isPoisoned = false;
+    public float attackCooldown = 1.2f; 
+
     private bool inContact = false;
-    private bool isCooldownActive = false;
     private GameObject enemy;
+    private float lastAttackTime;
+
+    private Dictionary<GameObject, float> poisonEndTimes = new Dictionary<GameObject, float>();
+    private Dictionary<GameObject, float> cooldownEndTimes = new Dictionary<GameObject, float>();
 
     void Update()
     {
-        if (!isCooldownActive && !isPoisoned)
+
+        bool canAttack = Time.time - lastAttackTime >= attackCooldown;
+
+
+        if (Input.GetMouseButtonDown(0) && canAttack && inContact)
         {
-            if (Input.GetMouseButtonDown(0) && inContact && !isPoisoned)
+            if (!IsPoisoned(enemy) && !IsOnCooldown(enemy))
             {
-                ProcPoison();
-                Debug.Log("Poison applied");
-            }
-        }
-        if (isCooldownActive)
-        {
-            cooldownTimer += Time.deltaTime;
-            if (cooldownTimer >= cooldown)
-            {
-                isCooldownActive = false;
-                cooldownTimer = 0;
+                ApplyPoison(enemy);
+                Debug.Log(enemy.name + " is poisoned");
             }
         }
 
-        if (isPoisoned)
-        {
-            poisonTimer += Time.deltaTime;
-            poisonDamageTimer += Time.deltaTime;
-
-            if (poisonDamageTimer >=1)
-            {
-                ProcPoison();
-                Debug.Log("Poison applied again");
-                poisonDamageTimer = 0;
-            }
-
-            if (poisonTimer >= poisonDuration)
-            {
-                isPoisoned = false;
-                ResetPoison();
-            }
-        }
+  
+        UpdatePoisonStates();
+        UpdateCooldownStates();
     }
 
-    void ProcPoison()
+    void ApplyPoison(GameObject target)
     {
-        if (enemy != null)
+        float endTime = Time.time + poisonDuration;
+        poisonEndTimes[target] = endTime;
+        cooldownEndTimes[target] = endTime + cooldown;
+        lastAttackTime = Time.time;
+        StartCoroutine(ApplyPoisonCoroutine(target, endTime));
+    }
+
+    IEnumerator ApplyPoisonCoroutine(GameObject target, float endTime)
+    {
+        while (Time.time < endTime)
         {
-            var enemyHealth = enemy.GetComponent<EnemyHealth>();
+            var enemyHealth = target.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(poisonDamage);
-                isPoisoned = true;
+                Debug.Log("Poison damage to " + target.name);
             }
+            yield return new WaitForSeconds(1.0f); 
         }
     }
 
-    void ResetPoison()
+    void UpdatePoisonStates()
     {
-        poisonTimer = 0;
-        poisonDamageTimer = 0;
-        Debug.Log("No more poison");
-        isCooldownActive = true;
+        List<GameObject> keysToRemove = new List<GameObject>();
+
+        foreach (GameObject target in poisonEndTimes.Keys)
+        {
+            if (Time.time >= poisonEndTimes[target])
+            {
+                keysToRemove.Add(target);
+                Debug.Log("Poison removed from " + target.name);
+            }
+        }
+
+        foreach (GameObject key in keysToRemove)
+        {
+            poisonEndTimes.Remove(key);
+        }
     }
 
+    void UpdateCooldownStates()
+    {
+        List<GameObject> keysToRemove = new List<GameObject>();
+
+        foreach (GameObject target in cooldownEndTimes.Keys)
+        {
+            if (Time.time >= cooldownEndTimes[target])
+            {
+                keysToRemove.Add(target);
+                Debug.Log("Poison cooldown ended for " + target.name);
+            }
+        }
+
+        foreach (GameObject key in keysToRemove)
+        {
+            cooldownEndTimes.Remove(key);
+        }
+    }
+
+    bool IsPoisoned(GameObject target)
+    {
+        return poisonEndTimes.ContainsKey(target);
+    }
+
+    bool IsOnCooldown(GameObject target)
+    {
+        return cooldownEndTimes.ContainsKey(target);
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
