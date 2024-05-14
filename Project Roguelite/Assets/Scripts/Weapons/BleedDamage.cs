@@ -6,18 +6,48 @@ public class BleedDamage : MonoBehaviour
 {
     public float bleedingDamage = 35;
     public int requiredHits = 3;
-    public float attackCooldown = 1.2f;
     private float lastAttackTime;
-
-
     private bool inContact = false;
     private GameObject enemy;
-
+    private float attackCooldown;
+    private SwordAttack swordAttack;
+    private DaggerAttack daggerAttack;
+    private WandFire wandFire;
 
     private Dictionary<GameObject, int> bleedGauge = new Dictionary<GameObject, int>();
 
     void Update()
     {
+        if (swordAttack == null)
+        {
+            swordAttack = GetComponent<SwordAttack>();
+            if (swordAttack != null)
+            {
+                attackCooldown = swordAttack.timeBetweenAttacks;
+                Debug.Log("Attack speed is " + attackCooldown);
+            }
+        }
+
+        if (daggerAttack == null)
+        {
+            daggerAttack = GetComponent<DaggerAttack>();
+            if (daggerAttack != null)
+            {
+                attackCooldown = daggerAttack.timeBetweenAttacks;
+                Debug.Log("Attack speed is " + attackCooldown);
+            }
+        }
+
+        if (wandFire == null)
+        {
+            wandFire = GetComponent<WandFire>();
+            if (wandFire != null)
+            {
+                attackCooldown = wandFire.timeBetweenFiring;
+                Debug.Log("Attack speed is " + attackCooldown);
+            }
+        }
+
         bool canAttack = Time.time - lastAttackTime >= attackCooldown;
 
         if (Input.GetMouseButtonDown(0) && inContact && canAttack)

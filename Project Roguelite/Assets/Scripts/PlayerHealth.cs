@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnightHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     public float currentPlayerHealth;
     public float maxPlayerHealth;

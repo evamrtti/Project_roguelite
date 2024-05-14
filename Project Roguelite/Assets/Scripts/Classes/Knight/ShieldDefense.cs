@@ -6,7 +6,7 @@ public class ShieldDefense : MonoBehaviour
 {
     private bool inContact = false;
     private GameObject enemy;
-    private KnightHealth playerDefense;
+    private PlayerHealth playerDefense;
     public int defenseDif;
     private int originalMinDefense;
     private int originalMaxDefense;
@@ -16,7 +16,7 @@ public class ShieldDefense : MonoBehaviour
     {
         if (!isDefending)
         {
-            playerDefense = GetComponentInParent<KnightHealth>();
+            playerDefense = GetComponentInParent<PlayerHealth>();
             originalMinDefense = playerDefense.minPlayerDefense;
             originalMaxDefense = playerDefense.maxPlayerDefense;
         }

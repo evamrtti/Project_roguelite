@@ -33,19 +33,7 @@ public class EnemyAttack : MonoBehaviour
         {
             if (player != null)
             {
-                if (player.GetComponent<KnightHealth>() != null)
-                {
-                    player.GetComponent<KnightHealth>().TakeDamage(damageAmount);
-                }
-                else if (player.GetComponent<RogueHealth>() != null)
-                {
-                    player.GetComponent<RogueHealth>().TakeDamage(damageAmount);
-                }
-                else if (player.GetComponent<SorcererHealth>() != null)
-                {
-                    player.GetComponent<SorcererHealth>().TakeDamage(damageAmount);
-                }
-
+                player.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
                 canAttack = false;
             }
         }

@@ -14,7 +14,7 @@ public class BetterSword : MonoBehaviour
         {
             SwordAttack sword = other.GetComponentInChildren<SwordAttack>();
             KnightMovement speed = other.GetComponentInChildren<KnightMovement>();
-            KnightHealth health = other.GetComponentInChildren<KnightHealth>();
+            PlayerHealth health = other.GetComponentInChildren<PlayerHealth>();
 
             if (sword != null)
             {

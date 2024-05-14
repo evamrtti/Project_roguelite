@@ -9,8 +9,8 @@ public class DaggerAttack : MonoBehaviour
     public int minDamage;
     public int maxDamage;
     private bool canAttack = true;
-    public float initialDelay;
-    public float cooldown;
+    public float initialDelay = 0.5f;
+    public float timeBetweenAttacks;
 
     void Update()
     {
@@ -29,7 +29,7 @@ public class DaggerAttack : MonoBehaviour
         canAttack = false;
         yield return new WaitForSeconds(initialDelay);
         enemyHealth.TakeDamage(damageAmount);
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(timeBetweenAttacks);
         canAttack = true;
     }
 

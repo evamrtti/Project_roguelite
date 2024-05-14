@@ -6,23 +6,20 @@ public class EnemyBleed : MonoBehaviour
 {
     public float bleedingDamage = 35;
     public int requiredHits = 3;
-    private int hitCounter = 0;
-    private bool hasBled = false;
     private bool canAttack = true;
     private bool inContact = false;
     private GameObject player;
     private float timeBeforeAttacking;
     public float timeBetweenAttacks;
+    private int hitCounter = 0;
+    private PlayerHealth playerHealth;
+
 
     void Update()
     {
         BleedGauge();
 
-        if (hasBled)
-        {
-            ResetBleeding();
-        }
-        else if (hitCounter >= requiredHits)
+        if (hitCounter >= requiredHits)
         {
             ProcBleed();
         }
@@ -40,26 +37,27 @@ public class EnemyBleed : MonoBehaviour
                 timeBeforeAttacking = 0;
             }
         }
-        
+
         if (canAttack && inContact)
         {
             hitCounter++;
-            Debug.Log("Enemy gauge growing!");
+            Debug.Log("Player gauge = " + hitCounter);
             canAttack = false;
         }
     }
 
     void ProcBleed()
     {
-        Debug.Log("Bleeding on player started!");
-        hasBled = true;
-    }
+        Debug.Log("Bleeding started!");
 
+        if (player!= null)
+        {
+            playerHealth = player.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(bleedingDamage);
+            Debug.Log("Player takes damage: " + bleedingDamage);
+        }
 
-    void ResetBleeding()
-    {
         hitCounter = 0;
-        hasBled = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -79,7 +77,3 @@ public class EnemyBleed : MonoBehaviour
         }
     }
 }
-
-
-
-

@@ -7,7 +7,10 @@ public class PoisonDamage : MonoBehaviour
     public float poisonDamage = 10;
     public float poisonDuration = 3;
     public float cooldown = 5;
-    public float attackCooldown = 1.2f; 
+    private float attackCooldown;
+    private SwordAttack swordAttack;
+    private DaggerAttack daggerAttack;
+    private WandFire wandFire;
 
     private bool inContact = false;
     private GameObject enemy;
@@ -18,9 +21,37 @@ public class PoisonDamage : MonoBehaviour
 
     void Update()
     {
+        if (swordAttack == null)
+        {
+            swordAttack = GetComponent<SwordAttack>();
+            if (swordAttack != null)
+            {
+                attackCooldown = swordAttack.timeBetweenAttacks;
+                Debug.Log("Attack speed is " + attackCooldown);
+            }
+        }
+
+        if (daggerAttack == null)
+        {
+            daggerAttack = GetComponent<DaggerAttack>();
+            if (daggerAttack != null)
+            {
+                attackCooldown = daggerAttack.timeBetweenAttacks;
+                Debug.Log("Attack speed is " + attackCooldown);
+            }
+        }
+
+        if (wandFire == null)
+        {
+            wandFire = GetComponent<WandFire>();
+            if (wandFire != null)
+            {
+                attackCooldown = wandFire.timeBetweenFiring;
+                Debug.Log("Attack speed is " + attackCooldown);
+            }
+        }
 
         bool canAttack = Time.time - lastAttackTime >= attackCooldown;
-
 
         if (Input.GetMouseButtonDown(0) && canAttack && inContact)
         {
