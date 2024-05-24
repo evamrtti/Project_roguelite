@@ -115,6 +115,8 @@ public class PoisonDamage : MonoBehaviour
 
         foreach (GameObject target in cooldownEndTimes.Keys)
         {
+            if (target == null) continue; 
+
             if (Time.time >= cooldownEndTimes[target])
             {
                 keysToRemove.Add(target);
@@ -127,6 +129,7 @@ public class PoisonDamage : MonoBehaviour
             cooldownEndTimes.Remove(key);
         }
     }
+
 
     bool IsPoisoned(GameObject target)
     {
