@@ -72,11 +72,11 @@ public class BleedDamage : MonoBehaviour
 
         if (bleedGauge[target] >= requiredHits)
         {
+            Debug.Log("Bleed damage of : " + bleedingDamage + " to " + enemy.name);
             var enemyHealth = target.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(bleedingDamage);
-                Debug.Log("Bleeding damage to " + target.name);
             }
             bleedGauge.Remove(target);
         }

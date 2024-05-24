@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        defense = Random.Range(minDefense, maxDefense);
+        defense = Random.Range(minDefense, maxDefense+1);
     }
 
     public void TakeDamage(float damageAmount)
@@ -26,8 +26,9 @@ public class EnemyHealth : MonoBehaviour
         {
             defense = damageAmount;
         }
-
-        currentHealth -= damageAmount - defense;
+        float damageTaken = damageAmount - defense;
+        currentHealth -= damageTaken;
+        Debug.Log("Defense : " + defense + " Damage taken : " + damageTaken);
 
         if (currentHealth <= 0)
         {

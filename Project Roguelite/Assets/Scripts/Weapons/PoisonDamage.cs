@@ -57,8 +57,9 @@ public class PoisonDamage : MonoBehaviour
         {
             if (!IsPoisoned(enemy) && !IsOnCooldown(enemy))
             {
-                ApplyPoison(enemy);
                 Debug.Log(enemy.name + " is poisoned");
+                ApplyPoison(enemy);
+
             }
         }
 
@@ -83,8 +84,8 @@ public class PoisonDamage : MonoBehaviour
             var enemyHealth = target.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
+                Debug.Log("Poison damage of : " + poisonDamage + " to " + target.name);
                 enemyHealth.TakeDamage(poisonDamage);
-                Debug.Log("Poison damage to " + target.name);
             }
             yield return new WaitForSeconds(1.0f); 
         }

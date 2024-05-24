@@ -26,9 +26,11 @@ public class DaggerAttack : MonoBehaviour
 
         var enemyHealth = enemy.GetComponent<EnemyHealth>();
         enemyHealth.TakeDamage(damageAmount);
+        Debug.Log("First dagger attack damage : " + damageAmount);
         canAttack = false;
         yield return new WaitForSeconds(initialDelay);
         enemyHealth.TakeDamage(damageAmount);
+        Debug.Log("Second dagger attack damage : " + damageAmount);
         yield return new WaitForSeconds(timeBetweenAttacks);
         canAttack = true;
     }
