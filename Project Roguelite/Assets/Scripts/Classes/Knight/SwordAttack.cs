@@ -27,7 +27,7 @@ public class SwordAttack : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && inContact && canAttack && shieldDefense != null && !shieldDefense.isDefending)
         {
-            damageAmount = Random.Range(minDamage, maxDamage);
+            damageAmount = Random.Range(minDamage, maxDamage+1);
             Attack();
         }
     }

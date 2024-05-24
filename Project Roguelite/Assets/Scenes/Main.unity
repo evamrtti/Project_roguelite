@@ -510,8 +510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0ac5e8c32d8484ea50e4a4669a2370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 0
-  maxDamage: 0
+  minDamage: 15
+  maxDamage: 15
   timeBetweenAttacks: 1
 --- !u!61 &1069805252
 BoxCollider2D:
@@ -622,9 +622,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2316a86ecb3c2f047b06bd9e7ccf588f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bleedingDamage: 35
+  bleedingDamage: 30
   requiredHits: 3
-  timeBetweenAttacks: 1
 --- !u!1 &1074877167
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +778,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 964932362067557217, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
+      propertyPath: maxPlayerDefense
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 964932362067557217, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
+      propertyPath: minPlayerDefense
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1701700288706600695, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.8833554
@@ -818,6 +825,10 @@ PrefabInstance:
     - target: {fileID: 1701700288706600695, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846720959170729541, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
+      propertyPath: shieldDif
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8245095176307738458, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       propertyPath: m_Name

@@ -9,6 +9,9 @@ public class PlayerHealth : MonoBehaviour
     public float defense;
     public int minPlayerDefense;
     public int maxPlayerDefense;
+    public int shield;
+    public float flatDamage;
+    public float totalDamage;
 
     void Start()
     {
@@ -17,17 +20,23 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        defense = Random.Range(minPlayerDefense, maxPlayerDefense);
+        defense = Random.Range(minPlayerDefense, maxPlayerDefense+1);
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, float fxDamage)
     {
-        if (defense > damageAmount)
+        flatDamage = Mathf.Max(damageAmount - shield, 0);
+        if (fxDamage == 0)
         {
-            defense = damageAmount;
+            totalDamage = Mathf.Max(flatDamage - defense, 0);
+            currentPlayerHealth -= totalDamage;
         }
 
-        currentPlayerHealth -= damageAmount - defense;
+        else
+        {
+            totalDamage = Mathf.Max(fxDamage - defense, 0);
+            currentPlayerHealth -= totalDamage;
+        }
 
         if (currentPlayerHealth <= 0)
         {

@@ -10,10 +10,11 @@ public class EnemyAttack : MonoBehaviour
     private bool canAttack = true;
     private float timeBeforeAttacking;
     public float timeBetweenAttacks;
+    private PlayerHealth playerHealth;
 
     void Update()
     {
-        damageAmount = Random.Range(minDamage, maxDamage);
+        damageAmount = Random.Range(minDamage, maxDamage+1);
         Attack();
     }
 
@@ -33,7 +34,9 @@ public class EnemyAttack : MonoBehaviour
         {
             if (player != null)
             {
-                player.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
+                playerHealth = player.GetComponent<PlayerHealth>();
+                playerHealth.TakeDamage(damageAmount,0);
+                Debug.Log("Flat damage : " + playerHealth.totalDamage + " Defense : " + playerHealth.defense + " Shield : " + playerHealth.shield);
                 canAttack = false;
             }
         }

@@ -9,17 +9,30 @@ public class EnemyBleed : MonoBehaviour
     private bool canAttack = true;
     private bool inContact = false;
     private GameObject player;
-    private float timeBeforeAttacking;
-    public float timeBetweenAttacks;
+    private float lastAttackTime;
+    private float attackCooldown;
     private int hitCounter = 0;
     private PlayerHealth playerHealth;
+    private EnemyAttack enemyAttack;
 
 
     void Update()
     {
         BleedGauge();
 
-        if (hitCounter >= requiredHits)
+        if (enemyAttack == null)
+        {
+            enemyAttack = GetComponent<EnemyAttack>();
+            if (enemyAttack != null)
+            {
+                attackCooldown = enemyAttack.timeBetweenAttacks;
+                Debug.Log("Enemy attack speed is " + attackCooldown);
+            }
+        }
+
+
+
+            if (hitCounter >= requiredHits)
         {
             ProcBleed();
         }
@@ -30,11 +43,11 @@ public class EnemyBleed : MonoBehaviour
     {
         if (!canAttack)
         {
-            timeBeforeAttacking += Time.deltaTime;
-            if (timeBeforeAttacking > timeBetweenAttacks)
+            lastAttackTime += Time.deltaTime;
+            if (lastAttackTime > attackCooldown)
             {
                 canAttack = true;
-                timeBeforeAttacking = 0;
+                lastAttackTime = 0;
             }
         }
 
@@ -50,11 +63,12 @@ public class EnemyBleed : MonoBehaviour
     {
         Debug.Log("Bleeding started!");
 
-        if (player!= null)
+        playerHealth = player.GetComponent<PlayerHealth>();
+        if (player != null)
         {
-            playerHealth = player.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(bleedingDamage);
-            Debug.Log("Player takes damage: " + bleedingDamage);
+            playerHealth.TakeDamage(0, bleedingDamage);
+            Debug.Log("Bleed damage : " + playerHealth.totalDamage + " Defense : " + playerHealth.defense + " Shield : " + playerHealth.shield);
+            canAttack = false;
         }
 
         hitCounter = 0;

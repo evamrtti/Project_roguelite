@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        damageAmount = Random.Range(minDamage, maxDamage);
+        damageAmount = Random.Range(minDamage, maxDamage+1);
     }
     
     void OnCollisionEnter2D(Collision2D collision)

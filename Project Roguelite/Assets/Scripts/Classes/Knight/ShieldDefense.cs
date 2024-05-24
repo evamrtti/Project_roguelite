@@ -6,19 +6,17 @@ public class ShieldDefense : MonoBehaviour
 {
     private bool inContact = false;
     private GameObject enemy;
-    private PlayerHealth playerDefense;
-    public int defenseDif;
-    private int originalMinDefense;
-    private int originalMaxDefense;
+    private PlayerHealth playerShield;
+    public int shieldDif;
     public bool isDefending = false;
+    private int originalShield;
 
     void Update()
     {
         if (!isDefending)
         {
-            playerDefense = GetComponentInParent<PlayerHealth>();
-            originalMinDefense = playerDefense.minPlayerDefense;
-            originalMaxDefense = playerDefense.maxPlayerDefense;
+            playerShield = GetComponentInParent<PlayerHealth>();
+            originalShield = playerShield.shield;
         }
 
         if (inContact && Input.GetMouseButtonDown(1))
@@ -35,15 +33,13 @@ public class ShieldDefense : MonoBehaviour
     public void Defend()
     {   
         isDefending = true;
-        playerDefense.minPlayerDefense += defenseDif;
-        playerDefense.maxPlayerDefense += defenseDif;
+        playerShield.shield+= shieldDif;
     }
 
     void ResetDefense()
     {
         isDefending = false;
-        playerDefense.minPlayerDefense = originalMinDefense;
-        playerDefense.maxPlayerDefense = originalMaxDefense;
+        playerShield.shield = originalShield;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

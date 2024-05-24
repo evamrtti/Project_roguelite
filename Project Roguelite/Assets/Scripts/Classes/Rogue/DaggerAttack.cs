@@ -22,7 +22,7 @@ public class DaggerAttack : MonoBehaviour
 
     IEnumerator AttackSequence()
     {
-        damageAmount = Random.Range(minDamage, maxDamage);
+        damageAmount = Random.Range(minDamage, maxDamage+1);
 
         var enemyHealth = enemy.GetComponent<EnemyHealth>();
         enemyHealth.TakeDamage(damageAmount);
