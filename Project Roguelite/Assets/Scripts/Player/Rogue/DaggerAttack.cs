@@ -8,7 +8,7 @@ public class DaggerAttack : MonoBehaviour
     private int damageAmount;
     public int minDamage;
     public int maxDamage;
-    private bool canAttack = true;
+    public bool canAttack = true;
     public float initialDelay = 0.5f;
     public float timeBetweenAttacks;
 
@@ -26,11 +26,11 @@ public class DaggerAttack : MonoBehaviour
 
         var enemyHealth = enemy.GetComponent<EnemyHealth>();
         enemyHealth.TakeDamage(damageAmount);
-        Debug.Log("First dagger attack damage : " + damageAmount);
+        Debug.Log("First dagger attack damage to " + enemy.name + " : " + damageAmount);
         canAttack = false;
         yield return new WaitForSeconds(initialDelay);
         enemyHealth.TakeDamage(damageAmount);
-        Debug.Log("Second dagger attack damage : " + damageAmount);
+        Debug.Log("Second dagger attack damage to " + enemy.name + " : " + damageAmount);
         yield return new WaitForSeconds(timeBetweenAttacks);
         canAttack = true;
     }

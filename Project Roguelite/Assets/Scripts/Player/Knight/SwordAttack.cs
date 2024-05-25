@@ -7,7 +7,7 @@ public class SwordAttack : MonoBehaviour
     private float damageAmount;
     public int minDamage;
     public int maxDamage;
-    private bool canAttack = true;
+    public bool canAttack = true;
     private float timeBeforeAttacking;
     public float timeBetweenAttacks;
 
@@ -28,7 +28,7 @@ public class SwordAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && inContact && canAttack && shieldDefense != null && !shieldDefense.isDefending)
         {
             damageAmount = Random.Range(minDamage, maxDamage+1);
-            Debug.Log("Sword attack damage : " + damageAmount);
+            Debug.Log("Sword attack damage to " + enemy.name + " : " + damageAmount);
             Attack();
         }
     }

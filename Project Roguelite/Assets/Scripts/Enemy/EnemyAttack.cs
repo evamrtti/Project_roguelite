@@ -36,7 +36,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 playerHealth = player.GetComponent<PlayerHealth>();
                 playerHealth.TakeDamage(damageAmount,0);
-                Debug.Log("Flat damage : " + playerHealth.totalDamage + " Defense : " + playerHealth.defense + " Shield : " + playerHealth.shield);
+                Debug.Log("Flat damage to player : " + playerHealth.totalDamage + " Defense : " + playerHealth.defense + " Shield : " + playerHealth.shield);
                 canAttack = false;
             }
         }

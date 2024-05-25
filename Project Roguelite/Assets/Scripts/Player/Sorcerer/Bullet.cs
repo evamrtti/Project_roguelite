@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
             enemy = collision.gameObject;
             var enemyHealth = enemy.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(damageAmount);
-            Debug.Log("Wand attack damage : " + damageAmount);
+            Debug.Log("Wand attack damage to " + enemy.name + " : " + damageAmount);
             Destroy(gameObject); 
         }
     }

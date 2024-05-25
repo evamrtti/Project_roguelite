@@ -54,7 +54,7 @@ public class EnemyBleed : MonoBehaviour
         if (canAttack && inContact)
         {
             hitCounter++;
-            Debug.Log("Player gauge = " + hitCounter);
+            Debug.Log("Player bleeding gauge = " + hitCounter);
             canAttack = false;
         }
     }
@@ -67,7 +67,7 @@ public class EnemyBleed : MonoBehaviour
         if (player != null)
         {
             playerHealth.TakeDamage(0, bleedingDamage);
-            Debug.Log("Bleed damage : " + playerHealth.totalDamage + " Defense : " + playerHealth.defense + " Shield : " + playerHealth.shield);
+            Debug.Log("Bleed damage to player : " + playerHealth.totalDamage + " Defense : " + playerHealth.defense + " Shield : " + playerHealth.shield);
             canAttack = false;
         }
 

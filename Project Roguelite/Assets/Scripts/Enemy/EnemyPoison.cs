@@ -65,7 +65,7 @@ public class EnemyPoison : MonoBehaviour
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage(0, poisonDamage);
-                    Debug.Log("Poison damage : " + playerHealth.totalDamage + " Defense : " + playerHealth.defense + " Shield : " + playerHealth.shield);
+                    Debug.Log("Poison damage to player : " + playerHealth.totalDamage + " Defense : " + playerHealth.defense + " Shield : " + playerHealth.shield);
 
                 }
             }
