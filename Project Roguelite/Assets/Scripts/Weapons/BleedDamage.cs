@@ -13,43 +13,14 @@ public class BleedDamage : MonoBehaviour
     private SwordAttack swordAttack;
     private DaggerAttack daggerAttack;
     private WandFire wandFire;
+    private bool playerCanAttack;
 
     private Dictionary<GameObject, int> bleedGauge = new Dictionary<GameObject, int>();
 
     void Update()
     {
-        if (swordAttack == null)
-        {
-            swordAttack = GetComponent<SwordAttack>();
-            if (swordAttack != null)
-            {
-                attackCooldown = swordAttack.timeBetweenAttacks;
-                Debug.Log("Attack speed is " + attackCooldown);
-            }
-        }
 
-        if (daggerAttack == null)
-        {
-            daggerAttack = GetComponent<DaggerAttack>();
-            if (daggerAttack != null)
-            {
-                attackCooldown = daggerAttack.timeBetweenAttacks;
-                Debug.Log("Attack speed is " + attackCooldown);
-            }
-        }
-
-        if (wandFire == null)
-        {
-            wandFire = GetComponent<WandFire>();
-            if (wandFire != null)
-            {
-                attackCooldown = wandFire.timeBetweenFiring;
-                Debug.Log("Attack speed is " + attackCooldown);
-            }
-        }
-
-
-        if (Input.GetMouseButtonDown(0) && inContact && PlayerCanAttack())
+        if (Input.GetMouseButtonDown(0) && inContact && playerCanAttack)
         {
             if (!bleedGauge.ContainsKey(enemy))
             {
@@ -61,33 +32,51 @@ public class BleedDamage : MonoBehaviour
                 ProcBleed(enemy);
             }
         }
+
+        CheckAttackScripts();
+        Debug.Log(playerCanAttack);
     }
 
-    public bool PlayerCanAttack()
+    void CheckAttackScripts()
     {
-        if (swordAttack != null && swordAttack.canAttack)
+        
+        if (swordAttack != null)
         {
-            return true;
+            playerCanAttack = swordAttack.canAttack;
+        }
+        else
+        {
+            swordAttack = GetComponent<SwordAttack>();
         }
 
-        if (daggerAttack != null && daggerAttack.canAttack)
+        if (daggerAttack != null)
         {
-            return true;
+            playerCanAttack = daggerAttack.canAttack;
+        }
+        else
+        {
+            daggerAttack = GetComponent<DaggerAttack>();
         }
 
-        if (wandFire != null && wandFire.canFire)
+        if (wandFire != null)
         {
-            return true;
+            playerCanAttack = wandFire.canFire;
         }
-
-        return false;
+        else
+        {
+            wandFire = GetComponent<WandFire>();
+        }
     }
 
     void ProcBleed(GameObject target)
     {
+        if (!bleedGauge.ContainsKey(target))
+        {
+            bleedGauge[target] = 0;
+        }
+
         bleedGauge[target]++;
-        Debug.Log("Bleeding gauge = " + bleedGauge[target] + " for " + target.name);
-        lastAttackTime = Time.time;
+        Debug.Log("Gauge = " + bleedGauge[target] + " for " + target.name);
 
         if (bleedGauge[target] >= requiredHits)
         {
@@ -118,7 +107,3 @@ public class BleedDamage : MonoBehaviour
         }
     }
 }
-
-
-
-

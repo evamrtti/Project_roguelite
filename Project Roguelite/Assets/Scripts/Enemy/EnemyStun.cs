@@ -29,7 +29,6 @@ public class EnemyStun : MonoBehaviour
             if (enemyAttack != null)
             {
                 attackCooldown = enemyAttack.timeBetweenAttacks;
-                Debug.Log("Enemy attack speed is " + attackCooldown);
             }
         }
 
