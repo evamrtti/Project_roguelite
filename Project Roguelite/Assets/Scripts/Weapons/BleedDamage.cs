@@ -48,9 +48,8 @@ public class BleedDamage : MonoBehaviour
             }
         }
 
-        bool canAttack = Time.time - lastAttackTime >= attackCooldown;
 
-        if (Input.GetMouseButtonDown(0) && inContact && canAttack)
+        if (Input.GetMouseButtonDown(0) && inContact && PlayerCanAttack())
         {
             if (!bleedGauge.ContainsKey(enemy))
             {
@@ -62,12 +61,32 @@ public class BleedDamage : MonoBehaviour
                 ProcBleed(enemy);
             }
         }
-    } 
+    }
+
+    public bool PlayerCanAttack()
+    {
+        if (swordAttack != null && swordAttack.canAttack)
+        {
+            return true;
+        }
+
+        if (daggerAttack != null && daggerAttack.canAttack)
+        {
+            return true;
+        }
+
+        if (wandFire != null && wandFire.canFire)
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     void ProcBleed(GameObject target)
     {
         bleedGauge[target]++;
-        Debug.Log("Gauge = " + bleedGauge[target] + " for " + target.name);
+        Debug.Log("Bleeding gauge = " + bleedGauge[target] + " for " + target.name);
         lastAttackTime = Time.time;
 
         if (bleedGauge[target] >= requiredHits)

@@ -304,7 +304,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5902588290199149082, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
   m_PrefabInstance: {fileID: 1534503772}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &672591807
+--- !u!114 &672591812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,12 +313,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 672591800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fc36dad6da7420439b65c604c22e110, type: 3}
+  m_Script: {fileID: 11500000, guid: b89c4ba4b5c3147468855ae78e93db0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisonDamage: 10
-  poisonDuration: 3
-  cooldown: 5
+  bleedingDamage: 35
+  requiredHits: 3
 --- !u!1 &924184269
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +473,8 @@ GameObject:
   - component: {fileID: 1069805250}
   - component: {fileID: 1069805253}
   - component: {fileID: 1069805252}
+  - component: {fileID: 1069805255}
+  - component: {fileID: 1069805254}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -593,6 +594,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1069805254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069805249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd45e9296f1ac844a3cc4bc5d2b3a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunDuration: 10
+  requiredHits: 6
+--- !u!114 &1069805255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069805249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0ac5e8c32d8484ea50e4a4669a2370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDamage: 0
+  maxDamage: 0
+  timeBetweenAttacks: 2
 --- !u!1 &1074877167
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +829,10 @@ PrefabInstance:
       propertyPath: minDamage
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 3997292000853572298, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5846720959170729541, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       propertyPath: shieldDif
       value: 10
@@ -813,7 +847,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5902588290199149082, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 672591807}
+      addedObject: {fileID: 672591812}
   m_SourcePrefab: {fileID: 100100000, guid: 0bed1d3b33277aa44997096199b3d535, type: 3}
 --- !u!1 &1995413940
 GameObject:

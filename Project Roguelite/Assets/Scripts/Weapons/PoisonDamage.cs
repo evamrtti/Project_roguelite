@@ -53,7 +53,7 @@ public class PoisonDamage : MonoBehaviour
 
         bool canAttack = Time.time - lastAttackTime >= attackCooldown;
 
-        if (Input.GetMouseButtonDown(0) && canAttack && inContact)
+        if (Input.GetMouseButtonDown(0) && PlayerCanAttack() && inContact)
         {
             if (!IsPoisoned(enemy) && !IsOnCooldown(enemy))
             {
@@ -66,6 +66,26 @@ public class PoisonDamage : MonoBehaviour
   
         UpdatePoisonStates();
         UpdateCooldownStates();
+    }
+
+    public bool PlayerCanAttack()
+    {
+        if (swordAttack != null && swordAttack.canAttack)
+        {
+            return true;
+        }
+
+        if (daggerAttack != null && daggerAttack.canAttack)
+        {
+            return true;
+        }
+
+        if (wandFire != null && wandFire.canFire)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     void ApplyPoison(GameObject target)
